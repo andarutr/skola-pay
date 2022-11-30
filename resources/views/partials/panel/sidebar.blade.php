@@ -123,9 +123,54 @@
 							</a>
 						</li>
 					</ul>
+				</div>
+				<div class="menu-gap"></div>
+				<div class="menu-group">
+					<div class="nav-header">	
+						<span>Student</span>
+					</div>
 					<ul class="navbar-nav flex-column">
 						<li class="nav-item @if($menu == 'Tagihan') active @endif">
 							<a class="nav-link" href="{{ url('student/tagihan') }}">
+								<span class="nav-icon-wrap">
+									<i class="bi bi-receipt"></i>
+								</span>
+								<span class="nav-link-text">Data Tagihan</span>
+							</a>
+						</li>
+					</ul>	
+				</div>
+			@else
+				<div class="menu-group">
+					<ul class="navbar-nav flex-column">
+						<li class="nav-item @if($menu == 'Dashboard') active @endif">
+							<a class="nav-link" href="{{ url('parent/dashboard') }}">
+								<span class="nav-icon-wrap">
+									<i class="bi bi-rocket"></i>
+								</span>
+								<span class="nav-link-text">Dashboard</span>
+							</a>
+						</li>
+					</ul>
+				</div>
+				<div class="menu-gap"></div>
+				<div class="menu-group">
+					<div class="nav-header">	
+						<span>Parent</span>
+					</div>
+					<ul class="navbar-nav flex-column">
+						<li class="nav-item @if($menu == 'Pembayaran') active @endif">
+							<a class="nav-link" href="{{ url('parent/pembayaran') }}">
+								<span class="nav-icon-wrap">
+									<i class="bi bi-wallet2"></i>
+								</span>
+								<span class="nav-link-text">Data Pembayaran</span>
+							</a>
+						</li>
+					</ul>	
+					<ul class="navbar-nav flex-column">
+						<li class="nav-item @if($menu == 'Tagihan') active @endif">
+							<a class="nav-link" href="{{ url('parent/tagihan') }}">
 								<span class="nav-icon-wrap">
 									<i class="bi bi-receipt"></i>
 								</span>
