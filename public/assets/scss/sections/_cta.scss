@@ -1,0 +1,56 @@
+/**
+ * Call To Action
+ */
+
+.tm-cta {
+    h2 {
+        color: #ffffff;
+    }
+
+    h5 {
+        color: #ffffff;
+    }
+
+    .tm-button {
+        margin-top: 20px;
+    }
+}
+
+.tm-cta2 {
+    position: relative;
+    padding: 100px 0;
+    &::before {
+        content: '';
+        position: absolute;
+        height: 100%;
+        width: 100%;
+        left: 0;
+        top: 0;
+        background-color: $color-theme;
+        opacity: 0.8;
+    }
+    >* {
+        position: relative;
+        z-index: 2;
+    }
+    .tm-cta_title {
+        font-size: 46px;
+        line-height: 1.2em;
+        color: #fff;
+        margin-bottom: 30px;
+        font-weight: 700;
+    }
+}
+@media #{$layout-tablet} {
+.tm-cta2 .tm-cta_title {
+    font-size: 34px;
+}
+}
+@media #{$layout-mobile-lg} {
+.tm-cta2 .tm-cta_title {
+    font-size: 34px;
+    br {
+        display: none !important;
+    }
+}
+}

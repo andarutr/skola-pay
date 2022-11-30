@@ -1,0 +1,164 @@
+/**
+ * Service
+ */
+
+.tm-service {
+    padding: 30px 30px;
+    transition: all 0.3s ease-in-out 0s;
+
+    &-icon {
+        display: inline-block;
+        font-size: 60px;
+        margin-bottom: 20px;
+    }
+
+    h5 {
+        margin-bottom: 23px;
+
+        a {
+            color: $color-heading;
+
+            &:hover {
+                color: $color-theme;
+            }
+        }
+    }
+
+    p {
+        margin-bottom: 0;
+    }
+
+    &:hover {
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    &:hover &-icon {
+        animation: rubberBand 0.5s ease-in-out 0s 1 both;
+    }
+
+    @media #{$layout-tablet}{
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    @media #{$layout-mobile-lg} {
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+        padding: 20px 15px;
+    }
+
+    @media #{$layout-mobile-sm} {
+        padding: 30px 20px;
+    }
+}
+
+.services-wrap {
+    margin-top: -30px;
+
+    .tm-service {
+        margin-top: 30px;
+    }
+}
+
+/* Service Style 2 */
+
+.tm-service2 {
+    box-shadow: none;
+    padding: 0 25px;
+    margin-top: 50px;
+
+    &-icon {
+        display: inline-block;
+        height: 92px;
+        width: 92px;
+        text-align: center;
+        line-height: 90px;
+        border-radius: 999px;
+        box-shadow: 0 3px 20px rgba(0, 0, 0, 0.1);
+        font-size: 40px;
+        margin-bottom: 25px;
+        background: #ffffff;
+        transition: all 0.3s ease-in-out;
+    }
+
+    h5 {
+        margin-bottom: 15px;
+
+        a {
+            color: $color-heading;
+
+            &:hover {
+                color: $color-theme;
+            }
+        }
+    }
+
+    p {
+        margin-bottom: 0;
+    }
+
+    &:hover &-icon {
+        background: $color-theme;
+        color: #ffffff;
+    }
+
+    &.tm-type1 {
+        background-color: #fff;
+        padding: 30px;
+        position: relative;
+        .tm-service2-icon {
+            background-color: rgba($color-theme, 0.06);
+            box-shadow: none;
+        }
+        &:hover {
+            .tm-service2-icon {
+                background-color: $color-theme;
+            }
+        }
+        p {
+            margin-bottom: 15px;
+        }
+        .tm-service-btn {
+            color: $color-heading;
+            &:hover {
+                color: $color-theme;
+            }
+        }
+        .tm-service2_number {
+            color: rgba($color-heading, 0.1);
+            font-size: 56px;
+            font-weight: 700;
+            position: absolute;
+            right: 25px;
+            top: 25px;
+            line-height: 1em;
+        }
+    }
+
+    @media #{$layout-tablet}{
+         padding: 0;
+    }
+
+    @media #{$layout-mobile-lg}{
+         padding: 0;
+    }
+
+}
+
+.services-wrap-2 {
+    margin-top: -50px;
+}
+
+
+
+/* Service Details */
+.tm-servicedetails{
+    img{
+        margin-bottom: 5px;
+    }
+    h5{
+        margin-top: 25px;
+        margin-bottom: 20px;
+    }
+    ul{
+        margin-bottom: 0;
+    }
+}
