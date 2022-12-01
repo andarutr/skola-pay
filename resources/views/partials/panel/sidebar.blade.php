@@ -84,6 +84,14 @@
 								</span>
 								<span class="nav-link-text">Feedback</span>
 							</a>
+						</li>
+						<li class="nav-item @if($menu == 'History') active @endif">
+							<a class="nav-link" href="{{ url('admin/history') }}">
+								<span class="nav-icon-wrap">
+									<i class="bi bi-clock-history"></i>
+								</span>
+								<span class="nav-link-text">History</span>
+							</a>
 						</li>	
 					</ul>
 				</div>

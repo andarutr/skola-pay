@@ -33,11 +33,31 @@ class AuthenticatedSessionController extends Controller
         $request->session()->regenerate();
 
         if(Auth::user()->id_role === 1) {
-            // return redirect()->intended(RouteServiceProvider::HOME);
+            $track = \DB::table('history')
+                        ->insert([
+                            'id_user' => Auth::user()->id,
+                            'activity_history' => 'login',
+                            'created_at' => now()
+                        ]);
+
             return redirect('/admin/dashboard');
         } elseif(Auth::user()->id_role === 2) {
+            $track = \DB::table('history')
+                        ->insert([
+                            'id_user' => Auth::user()->id,
+                            'activity_history' => 'login',
+                            'created_at' => now()
+                        ]);
+
             return redirect('/student/dashboard');
         } else {
+            $track = \DB::table('history')
+                        ->insert([
+                            'id_user' => Auth::user()->id,
+                            'activity_history' => 'login',
+                            'created_at' => now()
+                        ]);
+
             return redirect('/parent/dashboard');
         }
     }
@@ -50,6 +70,13 @@ class AuthenticatedSessionController extends Controller
      */
     public function destroy(Request $request)
     {
+        $track = \DB::table('history')
+                        ->insert([
+                            'id_user' => Auth::user()->id,
+                            'activity_history' => 'logout',
+                            'created_at' => now()
+                        ]);
+                        
         Auth::guard('web')->logout();
 
         $request->session()->invalidate();

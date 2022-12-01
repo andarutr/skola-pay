@@ -1,7 +1,7 @@
 <?php
 use Illuminate\Support\Facades\Route;
 
-Route::middleware('isAdmin')->group(function(){
+Route::middleware(['auth','isAdmin'])->group(function(){
 	// Route
 	Route::get('/admin/dashboard', [
 		App\Http\Controllers\Admin\DashboardController::class, 'index'
@@ -33,6 +33,12 @@ Route::middleware('isAdmin')->group(function(){
 	Route::get('/admin/feedback', [
 		App\Http\Controllers\Admin\FeedbackController::class, 'index'
 	]);
+	
+	// History
+	Route::get('/admin/history', [
+		App\Http\Controllers\Admin\HistoryController::class, 'index'
+	]);
+
 
 	// Account
 	Route::get('/admin/account', [

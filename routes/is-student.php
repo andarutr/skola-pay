@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::middleware('isStudent')->group(function(){
+Route::middleware(['auth','isStudent'])->group(function(){
 	// Route
 	Route::get('/student/dashboard', [App\Http\Controllers\Student\DashboardController::class, 'index']);
 
