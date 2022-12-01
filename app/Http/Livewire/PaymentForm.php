@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire;
 
+use Auth;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -13,6 +14,11 @@ class PaymentForm extends Component
 
     public function store()
     {
+        if(!Auth::check())
+        {
+            return redirect('error-payment');
+        }
+
         $this->validate([
             'name_student' => 'required',
             'name_parent' => 'required',
@@ -28,6 +34,7 @@ class PaymentForm extends Component
 
         $create = \DB::table('payment')
                         ->insert([
+                            'id_user' => Auth::user()->id,
                             'name_student' => $this->name_student,
                             'name_parent' => $this->name_parent,
                             'email_payment' => $this->email_payment,
@@ -46,10 +53,10 @@ class PaymentForm extends Component
         $this->picture_payment->storeAs('public/payment-spp', $this->picture_payment->getClientOriginalName());
 
         $this->reset();
-        $this->picture_payment = '';
-        session()->flash('success','Berhasil melakukan pembayaran SPP!');
 
+        session()->flash('success','Berhasil melakukan pembayaran SPP!');
     }
+
     public function render()
     {
         $kelas = \DB::table('kelas')->get();

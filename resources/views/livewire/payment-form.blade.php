@@ -5,6 +5,9 @@
     </script>
     <livewire:partials.notification.success-app />
     @endif
+    @if(!Auth::check())
+    <h5><u>Silahkan login terlebih dahulu</u></h5>
+    @endif
     <form wire:submit.prevent="store" class="tm-form tm-checkout-form">
         <div class="row">
             <div class="col-lg-12">

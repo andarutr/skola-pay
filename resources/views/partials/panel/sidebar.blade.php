@@ -167,6 +167,16 @@
 						<span>Parent</span>
 					</div>
 					<ul class="navbar-nav flex-column">
+						<li class="nav-item">
+							<a class="nav-link" href="{{ url('pembayaran') }}">
+								<span class="nav-icon-wrap">
+									<i class="bi bi-credit-card"></i>
+								</span>
+								<span class="nav-link-text">Pembayaran SPP</span>
+							</a>
+						</li>
+					</ul>
+					<ul class="navbar-nav flex-column">
 						<li class="nav-item @if($menu == 'Pembayaran') active @endif">
 							<a class="nav-link" href="{{ url('parent/pembayaran') }}">
 								<span class="nav-icon-wrap">
