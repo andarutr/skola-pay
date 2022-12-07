@@ -42,8 +42,8 @@ class InvoiceTable extends Component
                                 ->first();
 
         $invoice = \DB::table('invoice')
-                        ->where('id_user', $linked_account->id_user)
                         ->join('users','invoice.id_user','=','users.id')
+                        ->where('id_user', $linked_account->id_user)
                         ->orderByDesc('id_invoice')
                         ->paginate($this->paginate);
 

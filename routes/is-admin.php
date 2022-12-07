@@ -41,6 +41,9 @@ Route::middleware(['auth','isAdmin'])->group(function(){
 
 
 	// Account
+	Route::get('/admin/linked-account', [
+		App\Http\Controllers\Admin\LinkedAccountController::class, 'index'
+	]);
 	Route::get('/admin/account', [
 		App\Http\Controllers\Admin\NewAccountController::class, 'index'
 	]);

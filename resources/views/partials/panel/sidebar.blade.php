@@ -101,6 +101,14 @@
 						<span>Access</span>
 					</div>
 					<ul class="navbar-nav flex-column">
+						<li class="nav-item @if($menu == 'Linked Account') active @endif">
+							<a class="nav-link" href="{{ url('admin/linked-account') }}">
+								<span class="nav-icon-wrap">
+									<i class="bi bi-link"></i>
+								</span>
+								<span class="nav-link-text">Linked Account</span>
+							</a>
+						</li>
 						<li class="nav-item @if($menu == 'New Account') active @endif">
 							<a class="nav-link" href="{{ url('admin/account') }}">
 								<span class="nav-icon-wrap">
