@@ -16,7 +16,7 @@
       <div class="col-lg-12 col-sm-9 col-12">
         <div class="tab-content">
           <div class="tab-pane fade show active" id="tab_block_1">
-            <form action="{{ url('admin/edit-profile') }}" method="POST" enctype="multipart/form-data">@csrf
+            <form action="{{ url('access/edit-profile') }}" method="POST" enctype="multipart/form-data">@csrf
                 <div class="col-sm-12">
                   <div class="form-group">
                     <div class="media align-items-center">
@@ -50,13 +50,13 @@
                 <div class="col-sm-6">
                   <div class="form-group">
                     <label class="form-label">Username</label>
-                    <input class="form-control" type="text" value="{{ $user->username }}" readonly/>
+                    <input class="form-control" type="text" placeholder="{{ $user->username }}" readonly/>
                   </div>
                 </div>
               </div>
               <div class="row gx-3">
                 <div class="col-sm-12">
-                  <label class="form-label">Kelas (Boleh Dikosongkan)</label>
+                  <label class="form-label">Kelas</label>
                   <select class="form-select" name="kelas">
                     <option value="{{ $user->id_kelas }}">{{ $user->nomor_kelas }} {{ $user->prodi_kelas }}</option>
                     @foreach($kelas as $kls)

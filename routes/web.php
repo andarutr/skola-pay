@@ -36,3 +36,9 @@ require __DIR__.'/auth.php';
 require __DIR__.'/is-admin.php';
 require __DIR__.'/is-student.php';
 require __DIR__.'/is-parent.php';
+
+Route::middleware('auth')->group(function(){
+    Route::post('/access/edit-profile',[
+        App\Http\Controllers\Access\EditProfileController::class, 'update'
+    ]);
+});

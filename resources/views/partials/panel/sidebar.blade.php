@@ -138,6 +138,22 @@
 						<span>Student</span>
 					</div>
 					<ul class="navbar-nav flex-column">
+						<li class="nav-item @if($menu == 'Edit Profile') active @endif">
+							<a class="nav-link" href="{{ url('student/edit-profile') }}">
+								<span class="nav-icon-wrap">
+									<i class="bi bi-person"></i>
+								</span>
+								<span class="nav-link-text">Edit Profil</span>
+							</a>
+						</li>
+						<li class="nav-item @if($menu == 'Change Password') active @endif">
+							<a class="nav-link" href="{{ url('student/change-password') }}">
+								<span class="nav-icon-wrap">
+									<i class="bi bi-shield-lock"></i>
+								</span>
+								<span class="nav-link-text">Change Password</span>
+							</a>
+						</li>
 						<li class="nav-item @if($menu == 'Tagihan') active @endif">
 							<a class="nav-link" href="{{ url('student/tagihan') }}">
 								<span class="nav-icon-wrap">
@@ -167,6 +183,22 @@
 						<span>Parent</span>
 					</div>
 					<ul class="navbar-nav flex-column">
+						<li class="nav-item @if($menu == 'Edit Profile') active @endif">
+							<a class="nav-link" href="{{ url('parent/edit-profile') }}">
+								<span class="nav-icon-wrap">
+									<i class="bi bi-person"></i>
+								</span>
+								<span class="nav-link-text">Edit Profil</span>
+							</a>
+						</li>
+						<li class="nav-item @if($menu == 'Change Password') active @endif">
+							<a class="nav-link" href="{{ url('parent/change-password') }}">
+								<span class="nav-icon-wrap">
+									<i class="bi bi-shield-lock"></i>
+								</span>
+								<span class="nav-link-text">Change Password</span>
+							</a>
+						</li>
 						<li class="nav-item">
 							<a class="nav-link" href="{{ url('pembayaran') }}">
 								<span class="nav-icon-wrap">

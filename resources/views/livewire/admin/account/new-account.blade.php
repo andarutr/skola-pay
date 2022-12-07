@@ -1,7 +1,4 @@
 <div class="hk-pg-body">
-    @if(session()->has('success'))
-        <livewire:partials.notification.success />
-    @endif
     @if($statusPage === 'main')
         <div class="row mb-4">
             <div class="col-4 col-lg-2">
@@ -20,9 +17,12 @@
         </div>
         <div class="row">
             <div class="col-lg-11 col-sm-9 col-12">
-            <button wire:click="createPage" class="btn btn-success btn-animated">Create</button>
+            <button wire:click="createPage" class="btn btn-success btn-animated mb-3">Create</button>
+            @if(session()->has('success'))
+                <livewire:partials.notification.success />
+            @endif
             <div class="table-responsive">
-                <table class="table table-striped mt-4">
+                <table class="table table-striped mt-3">
                     <thead class="thead-primary">
                         <tr>
                             <th>Nama</th>

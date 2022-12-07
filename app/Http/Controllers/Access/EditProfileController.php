@@ -26,6 +26,7 @@ class EditProfileController extends Controller
     {
         $this->validate($req, [
             'name' => 'required',
+            'kelas' => 'required',
             'phone_number' => 'required',
         ]);
 
@@ -51,9 +52,9 @@ class EditProfileController extends Controller
                             'phone_number' => $req->phone_number,
                             'updated_at' => now()
                         ]);
+        return redirect()->back()->with('success', 'Berhasil memperbarui profile!');
         }
         
 
-        return redirect()->back()->with('success', 'Berhasil memperbarui profile!');
     }
 }

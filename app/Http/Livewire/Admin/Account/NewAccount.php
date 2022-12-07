@@ -30,8 +30,8 @@ class NewAccount extends Component
     public function store()
     {
         $this->validate([
-            'name' => 'required',
-            'username' => 'required',
+            'name' => 'required|unique:users',
+            'username' => 'required|unique:users',
             'id_role' => 'required'
         ]);
 

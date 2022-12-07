@@ -12,8 +12,8 @@ class ChangePassword extends Component
     public function changePassword()
     {
         $this->validate([
-            'old_password' => 'required|min:8',
-            'new_password' => 'required|min:8|same:password_confirmation',
+            'old_password' => 'required|min:6',
+            'new_password' => 'required|min:6|same:password_confirmation',
             'password_confirmation' => 'required'
         ]);
 
