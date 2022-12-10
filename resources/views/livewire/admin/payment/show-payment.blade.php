@@ -5,8 +5,8 @@
                 <h6>Bukti Pembayaran</h6>
             </div>
             <div class="card-body">
-                <a href="{{ Storage::url('public/payment-spp/'.$picture_payment) }}" data-fancybox>
-                    <img src="{{ Storage::url('public/payment-spp/'.$picture_payment) }}" class="img-fluid rounded" style="height: 250px !important;">
+                <a href="{{ url('assets/images/pembayaran-spp/'.$picture_payment) }}" data-fancybox>
+                    <img src="{{ url('assets/images/pembayaran-spp/'.$picture_payment) }}" class="img-fluid rounded" style="height: 250px !important;">
                 </a>
             </div>
         </div>

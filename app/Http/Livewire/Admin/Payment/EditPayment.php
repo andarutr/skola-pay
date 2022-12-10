@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Admin\Payment;
 
+use App\Models\Payment;
 use Livewire\Component;
 
 class EditPayment extends Component
@@ -22,8 +23,7 @@ class EditPayment extends Component
             'nominal_payment' => 'required'
         ]);
 
-        $update = \DB::table('payment')
-                        ->where('id_payment', $this->paymentId)
+        $update = Payment::where('id_payment', $this->paymentId)
                         ->update([  
                             'name_student' => $this->name_student,
                             'name_parent' => $this->name_parent,
@@ -33,8 +33,7 @@ class EditPayment extends Component
                             'transfer_by' => $this->transfer_by,
                             'month_payment' => $this->month_payment,
                             'virtual_account' => $this->virtual_account,
-                            'nominal_payment' => $this->nominal_payment,
-                            'updated_at' => now()
+                            'nominal_payment' => $this->nominal_payment
                         ]);
 
         session()->flash('success','Berhasil memperbarui pembayaran!');

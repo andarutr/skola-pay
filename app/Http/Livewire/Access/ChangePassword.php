@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Access;
 
 use Auth;
+use App\Models\User;
 use Livewire\Component;
 
 class ChangePassword extends Component
@@ -19,8 +20,7 @@ class ChangePassword extends Component
 
         if(Auth::attempt(['username' => Auth::user()->username, 'password' => $this->old_password]))
         {
-            $update_data = \DB::table('users')
-                            ->where('username',Auth::user()->username)
+            User::where('username',Auth::user()->username)
                             ->update([
                                 'password' => \Hash::make($this->new_password)
                             ]);

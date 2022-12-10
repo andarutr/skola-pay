@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Admin\Feedback;
 
 use Livewire\Component;
+use App\Models\Feedback;
 use Livewire\WithPagination;
 
 class FeedbackTable extends Component
@@ -16,34 +17,30 @@ class FeedbackTable extends Component
 
     public function destroy($id)
     {
-        $delete = \DB::table('feedback')
-                        ->where('id_feedback',$id)
-                        ->delete();
+       Feedback::where('id_feedback',$id)
+                ->delete();
 
         session()->flash('success','Berhasil menghapus data!');
     }
 
     public function destroyAll()
     {
-        $delete = \DB::table('feedback')
-                        ->delete();
+        \DB::table('feedback')->delete();
 
         session()->flash('success','Berhasil menghapus semua data!');
     }
 
     public function render()
     {
-        $feed_count = \DB::table('feedback')->count();
+        $feed_count = Feedback::count();
         
-        $feedbacks = \DB::table('feedback')
-                            ->orderByDesc('id_feedback')
-                            ->paginate($this->paginate);
+        $feedbacks = Feedback::orderByDesc('id_feedback')
+                                ->paginate($this->paginate);
 
-        $search = \DB::table('feedback')
-                        ->orderByDesc('id_feedback')
-                        ->where('name_feedback','like','%'.$this->search.'%')
-                        ->orwhere('email_feedback','like','%'.$this->search.'%')
-                        ->paginate($this->paginate);
+        $search = Feedback::orderByDesc('id_feedback')
+                            ->where('name_feedback','like','%'.$this->search.'%')
+                            ->orwhere('email_feedback','like','%'.$this->search.'%')
+                            ->paginate($this->paginate);
 
 
         return view('livewire.admin.feedback.feedback-table', [

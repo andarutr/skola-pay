@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use Livewire\Component;
+use App\Models\Feedback;
 
 class FeedbackForm extends Component
 {
@@ -20,12 +21,11 @@ class FeedbackForm extends Component
     {
         $this->validate();
         
-        $feedback = \DB::table('feedback')->insert([
+        // Create Feedback
+        $feedback = Feedback::create([
                         'name_feedback' => $this->name,
                         'email_feedback' => $this->email,
-                        'pesan_feedback' => $this->pesan,
-                        'updated_at' => now(),
-                        'created_at' => now()
+                        'pesan_feedback' => $this->pesan
                     ]);
         
         $this->reset();

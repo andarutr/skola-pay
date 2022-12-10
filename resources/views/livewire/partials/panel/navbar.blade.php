@@ -36,7 +36,7 @@
                 <div class="dropdown ps-2">
                     <a class=" dropdown-toggle no-caret" href="#" role="button" data-bs-display="static" data-bs-toggle="dropdown" data-dropdown-animation data-bs-auto-close="outside" aria-expanded="false">
                         <div class="avatar avatar-rounded avatar-xs">
-                            <img src="{{ Storage::url('public/profile/'.Auth::user()->picture) }}" alt="user" class="avatar-img">
+                            <img src="{{ url('/assets/images/profile/'.Auth::user()->picture) }}" alt="user" class="avatar-img">
                         </div>
                     </a>
                     <div class="dropdown-menu dropdown-menu-end">

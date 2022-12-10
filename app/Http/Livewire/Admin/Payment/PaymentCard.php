@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Admin\Payment;
 
+use App\Models\Payment;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -26,10 +27,9 @@ class PaymentCard extends Component
     {
         $this->statusPage = 'show';
         
-        $payment = \DB::table('payment')
-                        ->join('kelas','payment.id_kelas','=','kelas.id_kelas')
-                        ->where('id_payment',$id)
-                        ->first();
+        $payment = Payment::where('id_payment',$id)
+                            ->join('kelas','kelas.id_kelas','=','payment.id_kelas')
+                            ->first();
 
         $this->emit('getPayment', $payment);
     }
@@ -38,23 +38,20 @@ class PaymentCard extends Component
     {
         $this->statusPage = 'edit';
         
-        $payment = \DB::table('payment')
-                        ->join('kelas','payment.id_kelas','=','kelas.id_kelas')
-                        ->where('id_payment',$id)
-                        ->first();
+        $payment = Payment::where('id_payment',$id)
+                            ->join('kelas','kelas.id_kelas','=','payment.id_kelas')
+                            ->first();
 
         $this->emit('getPaymentEdit', $payment);
     }
 
     public function render()
     {
-        $payments = \DB::table('payment')
-                        ->orderByDesc('id_payment')
-                        ->join('kelas','payment.id_kelas','=','kelas.id_kelas')
-                        ->paginate($this->paginate);
+        $payments = Payment::orderByDesc('id_payment')
+                            ->join('kelas','kelas.id_kelas','=','payment.id_kelas')
+                            ->paginate($this->paginate);
                         
-                        $search = \DB::table('payment')
-                        ->join('kelas','payment.id_kelas','=','kelas.id_kelas')
+        $search = Payment::join('kelas','kelas.id_kelas','=','payment.id_kelas')
                         ->where('name_parent','like','%'.$this->search.'%')
                         ->orwhere('name_student','like','%'.$this->search.'%')
                         ->orwhere('jenis_pembayaran','like','%'.$this->search.'%')

@@ -2,7 +2,9 @@
 
 namespace App\Http\Livewire\Admin\Account;
 
+use App\Models\User;
 use Livewire\Component;
+use App\Models\LinkedUser;
 use Livewire\WithPagination;
 
 class LinkedAccount extends Component
@@ -35,13 +37,10 @@ class LinkedAccount extends Component
             'id_parent' => 'required|unique:linked_account'
         ]);
 
-        $create = \DB::table('linked_account')
-                        ->insert([
-                            'id_user' => $this->id_user,
-                            'id_parent' => $this->id_parent,
-                            'created_at' => now(),
-                            'updated_at' => now()
-                        ]);
+        LinkedUser::create([
+                        'id_user' => $this->id_user,
+                        'id_parent' => $this->id_parent
+                    ]);
 
         $this->reset();
 
@@ -50,23 +49,19 @@ class LinkedAccount extends Component
 
     public function render()
     {
-        $linked_user = \DB::table('linked_account')
-                            ->join('users','linked_account.id_user','=','users.id')
-                            ->orderByDesc('id_linked')
-                            ->paginate($this->paginate);
+        $linked_user = LinkedUser::orderByDesc('id_linked')
+                                    ->join('users','users.id','=','linked_account.id_user')
+                                    ->paginate($this->paginate);
 
-        $linked_parent = \DB::table('linked_account')
-                            ->join('users','linked_account.id_parent','=','users.id')
-                            ->orderByDesc('id_linked')
-                            ->paginate($this->paginate);
+        $linked_parent = LinkedUser::orderByDesc('id_linked')
+                                    ->join('users','users.id','=','linked_account.id_parent')
+                                    ->paginate($this->paginate);
 
-        $option_parents = \DB::table('users')
-                                ->orderByDesc('id')
+        $option_parents = User::orderByDesc('id')
                                 ->where('id_role', 3)
                                 ->get();
 
-        $option_users = \DB::table('users')
-                                ->orderByDesc('id')
+        $option_users = User::orderByDesc('id')
                                 ->where('id_role', 2)
                                 ->get();
 
@@ -75,9 +70,8 @@ class LinkedAccount extends Component
 
     public function destroy($id)
     {
-        $delete = \DB::table('linked_account')
-                        ->where('id_linked',$id)
-                        ->delete();
+        LinkedUser::where('id_linked',$id)
+                    ->delete();
 
         session()->flash('success','Berhasil menghapus linked account!');
     }

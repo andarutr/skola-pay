@@ -22,7 +22,7 @@
                     <div class="media align-items-center">
                       <div class="media-head me-5">
                         <div class="avatar avatar-rounded avatar-xxl">
-                          <img src="{{ Storage::url('public/profile/'.$user->picture) }}" alt="user" class="avatar-img">
+                          <img src="{{ url('/assets/images/profile/'.$user->picture) }}" alt="user" class="avatar-img">
                         </div>
                       </div>
                       <div class="media-body">

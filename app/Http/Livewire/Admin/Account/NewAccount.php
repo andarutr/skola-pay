@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Admin\Account;
 
+use App\Models\User;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -35,17 +36,14 @@ class NewAccount extends Component
             'id_role' => 'required'
         ]);
 
-        $create = \DB::table('users')
-                        ->insert([
-                            'name' => $this->name,
-                            'username' => $this->username,
-                            'password' => bcrypt('smkpbs2'),
-                            'id_role' => $this->id_role,
-                            'picture' => 'user.png',
-                            'id_kelas' => 16,
-                            'updated_at' => now(),
-                            'created_at' => now()
-                        ]);
+        User::create([
+                'name' => $this->name,
+                'username' => $this->username,
+                'password' => bcrypt('smkpbs2'),
+                'id_role' => $this->id_role,
+                'picture' => 'user.png',
+                'id_kelas' => 16
+            ]);
 
         $this->reset();
         
@@ -54,16 +52,15 @@ class NewAccount extends Component
 
     public function render()
     {
-        $users = \DB::table('users')
-                        ->join('roles','users.id_role','=','roles.id_role')
-                        ->join('kelas','users.id_kelas','=','kelas.id_kelas')
-                        ->orderByDesc('id')
+        $users = User::orderByDesc('id')
+                        ->join('roles','roles.id_role','=','users.id_role')
+                        ->join('kelas','kelas.id_kelas','=','users.id_kelas')
                         ->paginate($this->paginate);
 
-        $search = \DB::table('users')
+        $search = User::orderByDesc('id')
                         ->where('name','like','%'.$this->search.'%')
-                        ->join('roles','users.id_role','=','roles.id_role')
-                        ->join('kelas','users.id_kelas','=','kelas.id_kelas')
+                        ->join('roles','roles.id_role','=','users.id_role')
+                        ->join('kelas','kelas.id_kelas','=','users.id_kelas')
                         ->paginate($this->paginate);
 
         return view('livewire.admin.account.new-account', [
