@@ -61,4 +61,12 @@ class PaymentCard extends Component
         return view('livewire.admin.payment.payment-card', [
             'payments' => $this->search === null ? $payments : $search]);
     }
+
+    public function destroy($id)
+    {
+        Payment::where('id_payment', $id)
+                ->delete();
+
+        session()->flash('success','Berhasil menghapus pembayaran!');
+    }
 }

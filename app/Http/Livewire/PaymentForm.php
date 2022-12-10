@@ -3,6 +3,8 @@
 namespace App\Http\Livewire;
 
 use Auth;
+use App\Models\Payment;
+use App\Models\History;
 use Livewire\Component;
 use Livewire\WithFileUploads;
 
@@ -32,28 +34,31 @@ class PaymentForm extends Component
             'picture_payment' => 'image|max:1024'
         ]);
 
-        $create = \DB::table('payment')
-                        ->insert([
-                            'id_user' => Auth::user()->id,
-                            'name_student' => $this->name_student,
-                            'name_parent' => $this->name_parent,
-                            'email_payment' => $this->email_payment,
-                            'id_kelas' => $this->id_kelas,
-                            'jenis_pembayaran' => $this->jenis_pembayaran,
-                            'month_payment' => $this->month_payment,
-                            'transfer_by' => $this->transfer_by,
-                            'virtual_account' => $this->virtual_account,
-                            'nominal_payment' => str_replace('.', '' , $this->nominal_payment),
-                            'phone_number' => $this->phone_number,
-                            'picture_payment' => $this->picture_payment->getClientOriginalName(),
-                            'updated_at' => now(),
-                            'created_at' => now()
-                        ]);
+        Payment::create([
+                    'id_user' => Auth::user()->id,
+                    'name_student' => $this->name_student,
+                    'name_parent' => $this->name_parent,
+                    'email_payment' => $this->email_payment,
+                    'id_kelas' => $this->id_kelas,
+                    'jenis_pembayaran' => $this->jenis_pembayaran,
+                    'month_payment' => $this->month_payment,
+                    'transfer_by' => $this->transfer_by,
+                    'virtual_account' => $this->virtual_account,
+                    'nominal_payment' => str_replace('.', '' , $this->nominal_payment),
+                    'phone_number' => $this->phone_number,
+                    'picture_payment' => $this->picture_payment->getClientOriginalName()
+                ]);
 
-        $this->picture_payment->storeAs('public/payment-spp', $this->picture_payment->getClientOriginalName());
+        $this->picture_payment->storePubliclyAs('assets/images/pembayaran-spp', $this->picture_payment->getClientOriginalName());
 
         $this->reset();
-
+        
+        History::create([
+                'id_user' => Auth::user()->id,
+                'activity_history' => 'pembayaran',
+                'created_at' => now()
+                ]);
+        
         session()->flash('success','Berhasil melakukan pembayaran SPP!');
     }
 
